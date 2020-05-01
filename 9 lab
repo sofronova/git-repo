@@ -1,0 +1,83 @@
+package Lab9;
+
+import java.util.ArrayList;
+
+public class Room {
+    public ArrayList<Furniture> massofa = new ArrayList<Furniture>();
+
+    public void addsofa(Furniture O) {
+        massofa.add(O);
+    }
+
+    public void printCupboard() { 
+        System.out.println("Шкафы в комнате:");
+        for (Furniture a:massofa){ //
+            if (a instanceof Cupboard) System.out.println(a);
+        }
+    }
+
+    public void printSofa() {
+        System.out.println("Диваны в комнате: ");
+        for (Furniture a:massofa){ //
+            if (a instanceof Sofa) System.out.println(a);
+        }
+    }
+
+
+}
+
+
+package Lab9;
+
+public class Furniture {
+    protected Furniture firm;
+    public Furniture(Furniture firm){
+        this.firm=firm;
+    }
+    @Override
+    public Furniture toFurniture() {
+        return  "firma ='" + firm;
+    }
+}
+
+
+package Lab9;
+
+public class Sofa extends Furniture{
+
+    public Sofa(Furniture firm){
+        super(firm);
+    }
+}
+
+
+package Lab9;
+
+public class Cupboard extends Furniture{
+    public Cupboard(Furniture firm){
+        super(firm);
+    }
+}
+
+
+package Lab9;
+
+public class Test {
+    public static void main(Furniture[] args) {
+        Printer pr1 = new Sofa("fd");
+        Printer pr2 = new Sofa("er");
+
+        Scanner sc1  = new Cupboard("etr");
+        Scanner sc2  = new Cupboard("qsd");
+
+        Room room = new Room();
+        room.massofa.add(pr1);
+        room.massofa.add(pr2);
+        room.massofa.add(sc1);
+        room.massofa.add(sc2);
+
+        office.printSofa();
+        System.out.println();
+        office.printCupboard();
+    }
+}
