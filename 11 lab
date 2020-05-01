@@ -1,0 +1,197 @@
+1.
+
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Windows.Forms;
+ 
+namespace Triangle
+{
+    public partial class Form1 : Form
+    {
+        Triangle triangle;//объект класса Triangle
+        public Form1()
+        {
+            InitializeComponent();
+        }
+ 
+        private void button1_Click(object sender, EventArgs e)
+        {
+             // Присваиваемые значения сторонам тр-ка
+             double a = Convert.ToDouble( textBox1.Text);
+             double b = Convert.ToDouble( textBox2.Text);
+             double c = Convert.ToDouble( textBox3.Text);
+             triangle = new Triangle(a, b, c); // новый объект класса Triangle
+ 
+             textBox4.Text = triangle.AREA_().ToString();// Расчёт площади тр-ка, с вызовом метода AREA_()
+            //и вывод его в textBox
+ 
+             //textBox4.Text = triangle.A.ToString(); // Check A
+        }
+ 
+    }
+    public class Triangle
+    {
+        // Поля класса Triangle
+        public double a = 0;
+        public double b = 0;
+        public double c = 0;
+        public double p = 0;
+        public double S = 0;
+        // Конструктор класса с передаваемыми аргументами из textBox1,2,3
+        public Triangle(double a_, double b_, double c_)
+        {
+            // присваивание полям значений
+            a = a_;
+            b = b_;
+            c = c_;
+        }
+ 
+        // Свойства класса Triangle содержащие L сторон тр-ка
+        public double A
+        {
+            get { return a;}
+            set { a = value;}
+        }
+        public double B
+        {
+            get { return b; }
+            set { b = value; }
+        }
+        public double C
+        {
+            get { return c; }
+            set { c = value; }
+        }
+        // метод вычисления периметра треугольника для расчёта S по формуле
+        // формула на загруженной картинке
+        public double P_()
+        {       
+         p = (A + B + C)/2;
+         return p;
+        }
+        //метод вычисления площади тр-ка
+        public double AREA_()
+        {
+            double P = P_();
+            //double S = 0; 
+            // Расчёт площади
+           // S = Convert.ToInt32(Math.Sqrt(P*(P-A)*(P-B)*(P-C)));
+            S = Math.Sqrt(P * (P - A) * (P - B) * (P - C));
+            return S;
+        }
+    }
+}
+
+
+2.
+
+class Rectangle
+    {
+        public int A { get; set; }
+        public int B { get; set; }
+ 
+        public bool IsRectangle
+        {
+            get
+            { if (A != B)
+                    return true;
+                else return false;
+            }
+        }
+        public Rectangle (int a,int b){ A = a; B = b; }
+ 
+        public void PrintRectangle()
+        {
+            Console.WriteLine($"A={A}  B={B}");
+        }
+        public int GetS()
+        {
+            return A*B;
+        }
+        public int GetP()
+        {
+            return (A + B)*2;
+        }
+    }
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Rectangle rectangle = new Rectangle(4, 4);
+            rectangle.PrintRectangle();
+            if (!rectangle.IsRectangle)
+                Console.WriteLine("Квадрат!");
+            Rectangle rectangle1 = new Rectangle(4, 5);
+            rectangle1.PrintRectangle();
+            Console.WriteLine($"P={rectangle1.GetP()}  S={rectangle1.GetS()}");
+            Console.ReadKey();
+        }
+    }
+
+3.
+
+using System;
+ 
+namespace ConsoleApp
+{
+    class intArray 
+    {
+        int[] IntArray;
+        public int n 
+        {
+            get; 
+            private set;
+        }
+        public int scalar
+        {
+            private get { return scalar; }
+            set
+            {
+                for (int i = 0; i < IntArray.Length; i++)
+                {
+                    IntArray[i] *= value;
+                }
+            }
+        }
+        public intArray(int N) 
+        {
+            n = N;
+            IntArray = new int[n];
+        }
+        public void readArray() 
+        {
+            Console.WriteLine("Введите элементы:");
+            for (int i = 0; i < IntArray.Length; i++)
+            {
+                Console.Write("intArray[{0}] = ", i); IntArray[i] = Convert.ToInt32( Console.ReadLine());
+            }
+        }
+        public void printArray() 
+        {
+            Console.WriteLine("Вывод элементов:");
+            for (int i = 0; i < IntArray.Length; i++)
+            {
+                Console.WriteLine("IntArray[{0}] = {1}; ",i,IntArray[i]);
+            }
+        }
+    }
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            intArray arr = new intArray(3);
+            arr.readArray();
+            arr.printArray();
+            arr.scalar = 2;
+            Console.WriteLine(arr.n);
+            arr.printArray();
+            Console.ReadKey();
+ 
+        }
+    }
+}
