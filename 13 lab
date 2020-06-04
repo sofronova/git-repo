@@ -1,0 +1,33 @@
+1.
+
+import java.awt.*;
+class laba13 extends Frame {
+    public static void main(String[] args){
+        Frame fr =  new laba13();
+ fr.setSize(400, 150);
+ fr.setVisible(true);
+    }
+}
+
+
+2.
+
+import java.awt.*;
+import java.awt.event.*;
+class laba13_2 extends Frame {
+    laba13_2(String s){
+        super(s);
+ setSize(400, 150);
+ setVisible(true);
+ addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent ev) {
+                System.exit(0);
+            }
+        });
+    }
+    public static void main(String[] args){
+        new laba13_2("Моя программа");
+
+    }
+}
